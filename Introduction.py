@@ -14,6 +14,7 @@ def start_game():
     global scroll_speed
     pygame.init()
 
+
     WIDTH, HEIGHT = 1238, 700
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Beyond The Sanctum")
