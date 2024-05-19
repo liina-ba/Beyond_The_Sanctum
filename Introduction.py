@@ -24,7 +24,7 @@ def start_game():
     font2 = pygame.font.Font("resources/fonts/CinzelDecorative-Regular.ttf", 60)
     font3 = pygame.font.Font("resources/fonts/times new roman italic.ttf", 23)
 
-    timer = pygame.time.Clock()
+
     scroll_offset = 0
     # Load the image
     original_image = pygame.image.load( "resources/images/LOGOsanctum.png")
