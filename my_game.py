@@ -1,10 +1,13 @@
-import os
 import sys
-import threading
+import TheGame
 import time
 import pygame
 from bottons import Button
-#from pyvidplayer import Video
+# Load the image
+icon = pygame.image.load('resources/images/LOGOsanctum.png')
+
+# Set the window icon
+pygame.display.set_icon(icon)
 
 # Initialisation de Pygame
 pygame.init()
@@ -19,7 +22,7 @@ sound_allowed = True
 SCREEN = pygame.display.set_mode((1238, 700))
 pygame.display.set_caption("Menu")
 # Chargement de l'image du curseur personnalisé
-cursor_img = pygame.image.load('Sans titre.png')
+cursor_img = pygame.image.load('resources/images/Sans titre.png')
 # Redimensionner l'image du curseur
 cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Réglage de la taille du curseur personnalisé
 cursor_rect = cursor_img.get_rect()
@@ -29,43 +32,16 @@ pygame.mouse.set_visible(False)
 
 # Chargement de l'image de fond du menu
 
-bg_image = pygame.image.load("bgMenu1.png")
+bg_image = pygame.image.load("resources/images/bgMenu1.png")
 BG = pygame.transform.scale(bg_image, (1280, 720))  # Resize to match window size
-font3 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 50)
-# Chargement de l'image du bouton de son
-mute_images = [pygame.transform.scale(pygame.image.load("mute.png"), (25, 25)),
-               pygame.transform.scale(pygame.image.load("mute-button.png"), (25, 25))]
+font3 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 50)
 
-click_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+
+click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 # Définition de la fonction pour obtenir une police avec une taille spécifique
 def get_font(size):
-    return pygame.font.Font("CinzelDecorative-Regular (1).ttf", size)
+    return pygame.font.Font("resources/fonts/CinzelDecorative-Regular (1).ttf", size)
 
-
-# Définition de la fonction principale pour l'écran de jeu
-# Définition de la fonction principale pour l'écran de jeu
-def play():
-    global sound_allowed
-   # video = Video("3427514-hd_1920_1080_24fps.mp4")
-    clock = pygame.time.Clock()
-    running = True
-    pygame.mouse.set_visible(True)
-
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        SCREEN.fill((0, 0, 0))
-        # Draw the video frame
-
-        # Dessin du curseur
-        PLAY_MOUSE_POS = pygame.mouse.get_pos()
-        SCREEN.blit(cursor_img, PLAY_MOUSE_POS)
-
-        pygame.display.flip()
-        clock.tick(30)  # Limit frame rate
 
 
 # Définition de la fonction principale pour l'écran des options
@@ -102,7 +78,7 @@ def options():
                 play_click_sound()
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     if sound_allowed:
-                        back_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+                        back_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
                         back_sound.play()
                     main_menu()
                 elif MUSIC_BUTTON.checkForInput(OPTIONS_MOUSE_POS):
@@ -135,22 +111,14 @@ def main_menu():
         MENU_RECT2 = MENU_TEXT2.get_rect(topleft=(580, 150))
         PLAY_BUTTON = Button(image=None, pos=(300, 380),
                              text_input="PLAY", font=get_font(55), base_color="#d7fcd4", hovering_color="Black")
-        play_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+
         OPTIONS_BUTTON = Button(image=None, pos=(300, 500),
                                 text_input="Settings", font=get_font(55), base_color="#d7fcd4", hovering_color="Black")
-        options_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+
         QUIT_BUTTON = Button(image=None, pos=(300, 600),
                              text_input="QUIT", font=get_font(55), base_color="#d7fcd4", hovering_color="Black")
-        quit_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+
         SCREEN.blit(cursor_img, MENU_MOUSE_POS)
-        # Bouton pour contrôler la musique de fond
-        MUSIC_BUTTON = Button(image=mute_images[music_allowed], pos=(50, 120),
-                              text_input="MUSIC", font=get_font(15), base_color="#d7fcd4", hovering_color="White")
-
-        # Bouton pour contrôler les sons des boutons
-        SOUND_BUTTON = Button(image=mute_images[sound_allowed], pos=(50, 180),
-                              text_input="SOUND", font=get_font(15), base_color="#d7fcd4", hovering_color="White")
-
         SCREEN.blit(MENU_TEXT, MENU_RECT)
         SCREEN.blit(MENU_TEXT2, MENU_RECT2)
 
@@ -169,33 +137,22 @@ def main_menu():
             # Mise à jour de l'affichage
             pygame.display.flip()
             if event.type == pygame.QUIT:
-                quit_sound.play()
+
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 play_click_sound()
-                # Contrôle de la musique de fond
-                if MUSIC_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    music_allowed = not music_allowed
-                    if music_allowed:
-                        pygame.mixer.music.unpause()  # Reprendre la musique
-                    else:
-                        pygame.mixer.music.pause()  # Mettre en pause la musique
-                # Contrôle des sons des boutons
-                elif SOUND_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    sound_allowed = not sound_allowed
+
                 # Placez ici le reste de votre logique de clic pour les autres boutons
-                elif PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    import TheGame
+                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+
                     TheGame.play_game()
 
                 elif OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    if sound_allowed:
-                        options_sound.play()
+
                     options()
                 elif QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    if sound_allowed:
-                        quit_sound.play()
+
                     time.sleep(0.3)
                     pygame.quit()
                     sys.exit()
@@ -203,7 +160,7 @@ def main_menu():
         pygame.display.update()
 
 
-pygame.mixer.music.load("SaurabhAlwadkar-BeautifulLies.mp3")
+pygame.mixer.music.load("resources/sounds/Fantasy Music - Northwind.mp3")
 pygame.mixer.music.play(-1)  # Play indefinitely
 
 main_menu()

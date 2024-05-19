@@ -6,11 +6,11 @@ pygame.init()
 
 def play_click_sound():
     click_sound.play()
-click_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 
 pygame.init()
-font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 20)
-font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
+font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 20)
+font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
 
 
 def display_multiline_text(window, font, text, color, x, y,timeSleep=2):
@@ -93,12 +93,12 @@ class Button:
 
 
 def centaurs(screen):
-    #pygame.display.set_caption("Centaurs")
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 20)
-    font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    background = pygame.image.load("BG4.png")
-    centaur1 = pygame.image.load("centaur1.png")
-    centaur1_2 = pygame.image.load("centaur1_2.png")
+
+    font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 20)
+    font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
+    background = pygame.image.load("resources/images/BG4.png")
+    centaur1 = pygame.image.load("resources/images/centaur1.png")
+    centaur1_2 = pygame.image.load("resources/images/centaur1_2.png")
 
     newCentaurs = """
         Centaurs, majestic beings of myth and legend,embody the fusion of human intellect and equine grace
@@ -118,11 +118,10 @@ def centaurs(screen):
         They are both guardians of the wilderness and keepers of ancient lore
         embodying the timeless spirit of the untamed world.
         """
-    centaur_message = "More Information About Centaurs : "
     running = True
 
-    CtnReading = Button(">Continue Reading", (150, 500), 210, 50)
-    back=Button(">back to the game",(100,500),200,50)
+    CtnReading = Button("> Continue Reading", (150, 500), 210, 50)
+    back=Button("> Back to the game",(150,520),200,50)
     done = False
     while running:
         mouse_pos = pygame.mouse.get_pos()
@@ -152,7 +151,7 @@ def centaurs(screen):
             back.draw(screen)
             back.check_hover(mouse_pos)
 
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
@@ -163,20 +162,15 @@ def centaurs(screen):
 
 
 def Aiden(screen):
-    #pygame.display.set_caption("Centaurs")
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 20)
-    font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    background = pygame.image.load("BG4.png")
-    Aiden = pygame.image.load("Aiden3.png")
+
+    background = pygame.image.load("resources/images/BG4.png")
+    Aiden = pygame.image.load("resources/images/Aiden3.png")
     resized_image = pygame.transform.scale(Aiden, (443, 580))
 
-
-    centaur_message = "Aiden : "
     running = True
 
     back = Button(" Return Back", (500, 640), 200, 50)
 
-    done = False
     while running:
         mouse_pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -193,7 +187,7 @@ def Aiden(screen):
         back.check_hover(mouse_pos)
         back.draw(screen)
 
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
@@ -210,12 +204,11 @@ def Sanctum (screen):
 
     pygame.init()
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 20)
-    font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    background = pygame.image.load("BG4.png")
+    font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 20)
+    background = pygame.image.load("resources/images/BG4.png")
     msg = " Sanctum Seen From The Sky"
 
-    img1 = pygame.image.load("SanctumVueCiel.jpg")
+    img1 = pygame.image.load("resources/images/SanctumVueCiel.jpg")
     backButton = Button(" Return Back", (500, 570), 200, 50)
 
 
@@ -233,13 +226,12 @@ def Sanctum (screen):
 
         screen.fill((0, 0, 0))
         screen.blit(background, (0, 0))
-        #draw_text_box(screen, (90, 90), (1000, 520), (50, 50, 50), (109, 69, 38), 130)
         screen.blit(img1, (250, 114))
         display_multiline_text(screen, font1, msg, (255, 255, 255), 460, 50)
         backButton.draw(screen)
         backButton.check_hover(mouse_pos)
 
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
@@ -252,9 +244,8 @@ def Sanctum (screen):
 def BethDescreption(screen):
     pygame.init()
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-    pygame.display.set_caption("My First Test")
-    background = pygame.image.load("BG4.png")
-    font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
+    background = pygame.image.load("resources/images/BG4.png")
+    font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
 
     Beth_Descreption = """
     Beth, or Elizabeth, the tribe's revered elder,exudes wisdom and experience. 
@@ -269,9 +260,9 @@ def BethDescreption(screen):
 
    """
     detail = " Details about Beth also know as Elizabeth : "
-    old_woman = pygame.image.load("beth.png")
-    backBtn = Button(">Back to the game", (130, 470), 200, 50)
-    scroll_offset = 0
+    old_woman = pygame.image.load("resources/images/beth.png")
+    backBtn = Button("> Back to the game", (140, 470), 200, 50)
+
     running = True
     while running:  # this loop is to check if the game is closed or no
         mouse_pos = pygame.mouse.get_pos()
@@ -291,7 +282,7 @@ def BethDescreption(screen):
         backBtn.check_hover(mouse_pos)
         screen.blit(old_woman, (850, 150))
 
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
@@ -304,10 +295,9 @@ def BethDescreption(screen):
 def CryptedLetter(screen):
      pygame.init()
      screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-     background = pygame.image.load("BG4.png")
-     backButton= Button(">Back to the game",(490,550),200,50)
-     font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-     Crypted_Letter= pygame.image.load("new crypted letter.png")
+     background = pygame.image.load("resources/images/BG4.png")
+     backButton= Button("> Back to the game",(490,550),200,50)
+     Crypted_Letter= pygame.image.load("resources/images/new crypted letter.png")
 
 
      running = True
@@ -324,12 +314,11 @@ def CryptedLetter(screen):
 
            screen.fill((0, 0, 0))
            screen.blit(background, (0, 0))
-           #draw_text_box(screen, (90, 90), (1060, 480), (50, 50, 50), (109, 69, 38), 130)
            screen.blit(Crypted_Letter,(300,100))
            backButton.draw(screen)
            backButton.check_hover(mouse_pos)
 
-           cursor_img = pygame.image.load('Sans titre.png')
+           cursor_img = pygame.image.load('resources/images/Sans titre.png')
            cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
            cursor_pos = pygame.mouse.get_pos()
            screen.blit(cursor_img, cursor_pos)
@@ -344,11 +333,10 @@ def RoyalCeremony(screen):
      pygame.init()
      pygame.display.set_caption("Beyond The Sanctum")
      screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-     font0 = pygame.font.Font("times new roman italic.ttf", 20)
-     font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-     background = pygame.image.load("BG4.png")
-     royal_ceremony=pygame.image.load("RoyalCeremony.jpg")
-     backButton= Button(">Back to the game",(500,620),200,50)
+     font0 = pygame.font.Font("resources/fonts/times new roman italic.ttf", 20)
+     background = pygame.image.load("resources/images/BG4.png")
+     royal_ceremony=pygame.image.load("resources/images/RoyalCeremony.jpg")
+     backButton= Button("> Back to the game",(500,620),200,50)
      running = True
      royal = """
      In the heart of the grand palace, under the gaze of the morning sun, the Royal Ceremony unfolds
@@ -378,7 +366,7 @@ def RoyalCeremony(screen):
          backButton.draw(screen)
          backButton.check_hover(mouse_pos)
 
-         cursor_img = pygame.image.load('Sans titre.png')
+         cursor_img = pygame.image.load('resources/images/Sans titre.png')
          cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
          cursor_pos = pygame.mouse.get_pos()
          screen.blit(cursor_img, cursor_pos)
@@ -393,18 +381,18 @@ def Grimrushers(screen):
     pygame.init()
     pygame.display.set_caption("Beyond The Sanctum")
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 23)
-    font2 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    background = pygame.image.load("BG4.png")
-    king = pygame.image.load("KingGrim.png")
+    font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 23)
+    font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
+    background = pygame.image.load("resources/images/BG4.png")
+    king = pygame.image.load("resources/images/KingGrim.png")
     king_msg = """
      King Of Grimrushers 
      """
-    Friendly_grim = pygame.image.load("GoodGrim2.png")
+    Friendly_grim = pygame.image.load("resources/images/GoodGrim2.png")
     grim_msg1 = """ 
      A Friendly Grimrusher
      """
-    ferocious_grim = pygame.image.load("StrongGrim21.png")
+    ferocious_grim = pygame.image.load("resources/images/StrongGrim21.png")
     grim_msg2 = """
      Ferocious Grimrusher
      """
@@ -415,11 +403,11 @@ def Grimrushers(screen):
      devoid of  Mercy and Pity
      embodying sheer savagery
      """
-    army_Grimrusher = pygame.image.load("Army Grim1.png")
-    backButton = Button(">Back to the game", (500, 620), 200, 50)
-    ContiueBtn = Button(">continue reading about grimrushers", (470, 630), 200, 50)
+    army_Grimrusher = pygame.image.load("resources/images/Army Grim1.png")
+    backButton = Button("> Back to the game", (500, 620), 200, 50)
+    ContiueBtn = Button("> continue reading about grimrushers", (470, 630), 200, 50)
     Grimrushers_Description1 = """
-     Grimroshers, sinister predators, evoke horror and nightmare in the world of human beings.
+     Grimrushers, sinister predators, evoke horror and nightmare in the world of human beings.
      Their malicious and bloodthirsty nature is revealed in their imposing appearance,    
      which can measure 2 to 4 meters in height. 
      Once, before their transformation  by an inexplicable phenomenon into monsters 
@@ -429,23 +417,21 @@ def Grimrushers(screen):
      Their mere presence generates an aura of terror freezing anyone who crosses their path
      in a state of intense fear.
      """
-    ButtonGRim1 = Button(">Continue Reading", (180, 480), 200, 50)
+    ButtonGRim1 = Button("> Continue Reading", (180, 480), 200, 50)
     ButtonGrimPics = Button("> click to see Grimrushers", (200, 500), 200, 50)
     Grimrushers_Description2 = """
 
      Their skin, like a macabre canvas, comes in two distinct shades : 
      
-     some Grimroshers have ghostly white skin, while others have putrid green skin. 
+     some Grimrushers have ghostly white skin, while others have putrid green skin. 
      This chromatic difference adds to their mystery and horror, symbolizing the 
      diversity of their evil species  Due to their exceptional intelligence,
      these creatures used this asset as a tool  of domination, allowing 
      them to establish a ruthless reign  and subjugate the sanctum for decades
      """
-    anotherGrim = pygame.image.load("shortGrim.png")
+    anotherGrim = pygame.image.load("resources/images/shortGrim.png")
     running = True
-    scroll_offset = 0
     Donediscription1 = False
-    Donediscription2 = False
     grimWindow = False
     armyGrim = False
     while running:
@@ -505,7 +491,7 @@ def Grimrushers(screen):
             display_multiline_text(screen, font2, armyGrim_msg, (255,255,255), 670, 200)
             backButton.draw(screen)
             backButton.check_hover(mouse_pos)
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
@@ -545,9 +531,9 @@ def EndScreen():
 
     pygame.display.set_caption("Beyond The Sanctum")
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
-    font3 = pygame.font.Font("CinzelDecorative-Regular.ttf", 60)
-    font4 = pygame.font.Font("CinzelDecorative-Regular.ttf", 27)
-    background = pygame.image.load("BG4.png")
+    font3 = pygame.font.Font("resources/fonts/CinzelDecorative-Regular.ttf", 60)
+    font4 = pygame.font.Font("resources/fonts/CinzelDecorative-Regular.ttf", 27)
+    background = pygame.image.load("resources/images/BG4.png")
     running = True
     button50 = Button(" BACK TO MENU ", (500, 630), 200, 50)
     msg1 = """

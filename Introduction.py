@@ -6,7 +6,7 @@ pygame.mouse.set_visible(False)
 def play_click_sound():
     click_sound.play()
 
-click_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 
 
 
@@ -17,19 +17,17 @@ def start_game():
     WIDTH, HEIGHT = 1238, 700
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Beyond The Sanctum")
-    background = pygame.image.load('BG4.png')
-    background1= pygame.image.load('BG4.png')
-    font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    font0 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 30)
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 30)
-    font2 = pygame.font.Font("CinzelDecorative-Regular.ttf", 60)
-    font3 = pygame.font.Font("times new roman italic.ttf", 23)
+    background = pygame.image.load('resources/images/BG4.png')
+    font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
+    font0 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 30)
+    font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 30)
+    font2 = pygame.font.Font("resources/fonts/CinzelDecorative-Regular.ttf", 60)
+    font3 = pygame.font.Font("resources/fonts/times new roman italic.ttf", 23)
 
     timer = pygame.time.Clock()
     scroll_offset = 0
     # Load the image
-    original_image = pygame.image.load( "LOGOsanctum.png")  # Replace "your_image_file.png" with the path to your image file
-    original_width, original_height = original_image.get_size()
+    original_image = pygame.image.load( "resources/images/LOGOsanctum.png")
 
     # Set new size for the image
     new_width = 175
@@ -106,7 +104,7 @@ def start_game():
                 # Adjust the button position based on scroll_offset
                 adjusted_position = (self.initial_position[0], self.initial_position[1] + scroll_offset)
                 self.rect = pygame.Rect(adjusted_position, self.rect.size)
-                font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 30)
+                font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 30)
                 font_surface = font.render(self.text, True, self.color)
                 font_rect = font_surface.get_rect(center=self.rect.center)
                 surface.blit(font_surface, font_rect)
@@ -146,7 +144,7 @@ def start_game():
                 # Adjust the button position based on scroll_offset
                 adjusted_position = (self.initial_position[0], self.initial_position[1] + scroll_offset)
                 self.rect = pygame.Rect(adjusted_position, self.rect.size)
-                font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
+                font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
                 font_surface = font.render(self.text, True, self.color)
                 font_rect = font_surface.get_rect(center=self.rect.center)
                 surface.blit(font_surface, font_rect)
@@ -341,7 +339,7 @@ def start_game():
 
 
 
-    image_path = "logo.png"
+    image_path = "resources/images/logo.png"
     target_size = (450, 450)
     display_image_and_text_slow(image_path, t1, 1, image_position=(500, 90), text_position=(240, 350))
     screen.fill((0, 0, 0))
@@ -489,7 +487,7 @@ def start_game():
         if done7:
             break
 
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)

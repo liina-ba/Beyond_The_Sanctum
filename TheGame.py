@@ -7,21 +7,18 @@ pygame.mouse.set_visible(False)
 
 def play_click_sound():
     click_sound.play()
-click_sound = pygame.mixer.Sound("mouse-click-153941.mp3")
+click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 def play_game():
     global scroll_speed
 
     WIDTH, HEIGHT = 1238, 700
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Beyond The Sanctum")
-    background = pygame.image.load('BG4.png')
-    background1= pygame.image.load('BG4.png')
-    font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
-    font0 = pygame.font.Font("times new roman italic.ttf", 20)
-    font1 = pygame.font.Font("Cinzel-VariableFont_wght.ttf", 30)
-    font2 = pygame.font.Font("CinzelDecorative-Regular.ttf", 60)
-    font3 = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 70)
-    font0_0 = pygame.font.Font("times new roman italic.ttf", 25)
+    background = pygame.image.load('resources/images/BG4.png')
+    font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
+    font0 = pygame.font.Font("resources/fonts/times new roman italic.ttf", 20)
+    font2 = pygame.font.Font("resources/fonts/CinzelDecorative-Regular.ttf", 60)
+    font3 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 70)
     timer = pygame.time.Clock()
 
     scroll_offset = 0
@@ -144,7 +141,7 @@ def play_game():
                 # Adjust the button position based on scroll_offset
                 adjusted_position = (self.initial_position[0], self.initial_position[1] + scroll_offset)
                 self.rect = pygame.Rect(adjusted_position, self.rect.size)
-                font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
+                font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
                 font_surface = font.render(self.text, True, self.color)
                 font_rect = font_surface.get_rect(center=self.rect.center)
                 surface.blit(font_surface, font_rect)
@@ -237,7 +234,7 @@ def play_game():
             # Draw the text field at the adjusted position
             adjusted_rect = pygame.Rect(self.rect.x, adjusted_y, self.rect.width, self.rect.height)
             pygame.draw.rect(surface, self.border_color, adjusted_rect, 1)
-            font = pygame.font.Font("EBGaramond-VariableFont_wght.ttf", 25)
+            font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
             text_surface = font.render(self.text, True, self.text_color)
             surface.blit(text_surface, (self.rect.x + 5, adjusted_y + 5))
 
@@ -282,7 +279,6 @@ def play_game():
 
 
 
-    dn = False
     done = False
     done1 = False
     done2_1 = False
@@ -300,7 +296,6 @@ def play_game():
     done6_2 = False
     done1_0 = True
     done7_1 = False
-    done7_2 = False
     done7_3 = False
     done8_1 = False
     done8_2 = False
@@ -314,7 +309,6 @@ def play_game():
     done10_2 = False
     done10 = False
     done10_3 = False
-    done11_3 = False
     done11_1 = False
     done11_2 = False
     done12 = False
@@ -323,8 +317,6 @@ def play_game():
     done13 = False
     done13_1 = False
     done13_2 = False
-    done02 = False
-    done01 = False
     done14_1 = False
     done14_2 = False
     done14_3 = False
@@ -341,7 +333,6 @@ def play_game():
     done16_2 = False
     done16_3 = False
     done16_4 = False
-
     done60 = False
     done37_1 = False
 
@@ -404,21 +395,16 @@ def play_game():
     button16_2 = Button(" > Open.", (120, 340), 200, 50)
     button16_3 = Button(" > Examine the grating more.", (120, 410), 300, 50)
     button16_4 = Button(" > Ask him about the riddle.", (120, 620), 300, 50)
-
     button37_1 = Button(" MENU ", (500, 580), 200, 50)
-
 
     centaurs = CharButton(" Centaur", (73, 1285), 200, 50, button_click_action)
     Script = CharButton(" scripts", (368, 296), 200, 50, button_click_action3)
-
-
 
 
     while True:
 
         screen.fill((0, 0, 0))
         screen.blit(background, (0, 0))
-        dt = timer.tick(60)
         mouse_pos = pygame.mouse.get_pos()
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
@@ -556,11 +542,9 @@ def play_game():
                 elif button15_1.check_click(mouse_pos) and done15:
                     done15_1 = True
                     scroll_offset = 0
-                    hint_pressed = True
                 elif button15_2.check_click(mouse_pos) and done15_1 :
                     done15_2 = True
                     scroll_offset = 0
-
                 elif button15_4.check_click(mouse_pos) and done15_1:
                     done15_4 = True
                     scroll_offset = 0
@@ -753,7 +737,6 @@ def play_game():
             display_text(screen, text7_3, (120, 230), font, (255, 255, 255), scroll_offset)
             display_text(screen, text7_4, (120, 1370), font0, (205, 210, 155), scroll_offset)
             draw_line(screen, 130, HEIGHT + 740, WIDTH - 130, HEIGHT + 740, 1, (109, 69, 38), scroll_offset, line_visible)
-            #draw_line(screen, 133, HEIGHT + 628, WIDTH - 1014, HEIGHT + 628, 1, (168, 127, 71), scroll_offset, line_visible)
             button7_3.draw(screen, scroll_offset)
             centaurs.draw(screen, scroll_offset)
         if done7_3:
@@ -933,7 +916,7 @@ def play_game():
             done15_5 = False
             done15_4 = False
             draw_text_box(screen, (200, 60), (810, 605), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
-            original_image = pygame.image.load("map.png")
+            original_image = pygame.image.load("resources/images/map.png")
             resized_image = pygame.transform.scale(original_image, (800, 595))
             screen.blit(resized_image, (205, 65 + scroll_offset))
             button15_7.draw(screen, scroll_offset)
@@ -1048,7 +1031,7 @@ def play_game():
             done15_4 = False
 
         # Draw the cursor
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)

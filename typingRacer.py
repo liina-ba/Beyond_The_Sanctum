@@ -6,24 +6,14 @@ import random
 
 def typing_racer_game():
     global high_score
+    global word_index
     pygame.init()
 
-    list_words = ["aiden", "the", "solution",  "to", "the", "riddle", "is", "wisdom"]
-    random.shuffle(list_words)
-    random_word = random.choice(list_words)
-
+    list_words = ["aiden", "wisdom", "is",  "the", "solution"]
     wordlist = list_words
+    word_index = 0
     len_indexes = []
     length = 1
-
-    wordlist.sort(key=len)
-    for i in range(len(wordlist)):
-        if len(wordlist[i]) > length:
-            length += 1
-            len_indexes.append(i)
-    len_indexes.append(len(wordlist))
-
-    choices = [i for i in range(len(len_indexes) - 1)]
 
     WIDTH = 1238
     HEIGHT = 700
@@ -36,8 +26,8 @@ def typing_racer_game():
     score = 0
     correct_taps = 0
 
-    header_font = pygame.font.Font('assets/fonts/square.ttf', 50)
-    header_font1 = pygame.font.Font('assets/fonts/square.ttf', 40)
+    header_font = pygame.font.Font('assets/fonts/Square.ttf', 50)
+    header_font1 = pygame.font.Font('assets/fonts/Square.ttf', 40)
     pause_font = pygame.font.Font('assets/fonts/1up.ttf', 38)
     banner_font = pygame.font.Font('assets/fonts/1up.ttf', 28)
     font = pygame.font.Font('assets/fonts/AldotheApache.ttf', 48)
@@ -124,17 +114,17 @@ def typing_racer_game():
         pygame.draw.rect(surface, (0, 0, 0, 200), [320, 150, 600, 370], 5, 5)
 
         resume_btn = Button(510, 320, '>', False, surface)
-        if correct_taps < 6:
+        if correct_taps < 7:
           resume_btn.draw()
         quit_btn = Button(510, 430, 'X', False, surface)
         quit_btn.draw()
 
         # Draw the "PLAY" button only if the user has not won
-        if correct_taps < 6:
+        if correct_taps < 7:
             surface.blit(header_font.render('MENU', True, 'white'), (550, 200))
             surface.blit(header_font.render('PLAY', True, 'white'), (570, 300))
         surface.blit(header_font.render('QUIT', True, 'white'), (570, 410))
-        if correct_taps == 6:
+        if correct_taps == 7:
             surface.blit(header_font.render('You win!', True, 'green'), (500, 170))
             surface.blit(header_font1.render('Now Go solve the riddle', True, 'white'), (380, 300))
 
@@ -142,22 +132,29 @@ def typing_racer_game():
         return resume_btn.clicked, quit_btn.clicked
 
     def generate_level():
+        global word_index
         word_objs = []
-        include = []
         vertical_spacing = (HEIGHT - 150) // level
-        for i in range(len(choices)):
-            if choices[i]:
-                include.append((len_indexes[i], len_indexes[i + 1]))
+
         for i in range(level):
-            speed = random.randint(2, 3) + 1
+            speed = random.randint(2, 3)
             y_pos = random.randint(10 + (i * vertical_spacing), (i + 1) * vertical_spacing)
             x_pos = random.randint(WIDTH, WIDTH + 1000)
-            ind_sel = random.choice(include)
-            index = random.randint(ind_sel[0], ind_sel[1] - 1) if ind_sel[1] > ind_sel[0] else ind_sel[0]  # Adjusted index range
+            index = word_index  # Use the current word index
             text = wordlist[index].lower()
             new_word = Word(text, speed, y_pos, x_pos)
             word_objs.append(new_word)
+            word_index = (word_index + 1) % len(wordlist)  # Increment and wrap the index
         return word_objs
+
+    def check_answer(scor):
+        for wrd in word_objects:
+            if wrd.text == submit:
+                points = wrd.speed * len(wrd.text) * 10 * (len(wrd.text) / 4)
+                scor += int(points)
+                word_objects.remove(wrd)
+                woosh.play()
+        return scor
 
     def check_answer(scor):
         for wrd in word_objects:
@@ -249,7 +246,7 @@ def typing_racer_game():
             check_high_score()
             score = 0
             correct_taps = 0
-        if correct_taps == 6:
+        if correct_taps == 7:
             pz = True
             level = 1
             lives = 1
@@ -259,7 +256,7 @@ def typing_racer_game():
             score = 0
 
         # Draw the cursor
-        cursor_img = pygame.image.load('Sans titre.png')
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
         cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
