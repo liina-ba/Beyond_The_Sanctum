@@ -9,7 +9,6 @@ def play_click_sound():
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 
 
-
 def start_game():
     global scroll_speed
     pygame.init()
