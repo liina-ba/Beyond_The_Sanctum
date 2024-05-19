@@ -164,14 +164,11 @@ def play_game2():
                 return True
             return False
 
-    def button_click_action():
-        CharactersDetails.centaurs(screen)
-
-    def button_click_action3():
-        CharactersDetails.CryptedLetter(screen)
 
     def button_click_action1():
         CharactersDetails.RoyalCeremony(screen)
+    def button_click_action4():
+        CharactersDetails.BethStory(screen)
 
     def display_text(surface, text, pos, font, color, scroll_offset):
         max_width = WIDTH - 110  # Maximum line width
@@ -453,8 +450,8 @@ def play_game2():
     button37_3 = Button(" MENU ", (500, 480), 200, 50)
 
     Beth = CharButton(" Beth", (64, 247), 150, 50, button_click_action2)
-    Script = CharButton(" scripts", (368, 296), 200, 50, button_click_action3)
-    Royal = CharButton(" royal ceremony", (910, 830), 200, 50, button_click_action1)
+    Royal = CharButton(" royal ceremony", (923, 830), 200, 50, button_click_action1)
+    Story = CharButton(" Read ", (895, 321), 200, 50, button_click_action4)
 
     Wisdom = TextField((140, 690), (940, 40), (255, 255, 255), (255, 255, 255), 10, "wisdom", handle_correct_answer, handle_wrong_answer)
 
@@ -575,12 +572,12 @@ def play_game2():
                 elif Beth.check_click(mouse_pos):
                     Beth.clicked = False  # Reset the clicked flag
                     Beth.visible = True  # Make the button visible again
-                elif Script.check_click(mouse_pos):
-                    Script.clicked = False  # Reset the clicked flag
-                    Script.visible = True  # Make the button visible again
                 elif Royal.check_click(mouse_pos):
                     Royal.clicked = False  # Reset the clicked flag
                     Royal.visible = True  # Make the button visible again
+                elif Story.check_click(mouse_pos):
+                    Story.clicked = False  # Reset the clicked flag
+                    Story.visible = True  # Make the button visible again
                 elif button22_1.check_click(mouse_pos) and done21_4 :
                     done22_1 = True
                     scroll_offset = 0
@@ -745,7 +742,7 @@ def play_game2():
         button21_3.check_hover(mouse_pos)
         button21_4.check_hover(mouse_pos)
         Beth.check_hover(mouse_pos)
-        Script.check_hover(mouse_pos)
+        Story.check_hover(mouse_pos)
         Royal.check_hover(mouse_pos)
         button22_1.check_hover(mouse_pos)
         button23.check_hover(mouse_pos)
@@ -850,10 +847,8 @@ def play_game2():
             done15_4 = False
             draw_text_box(screen, (90, 120), (1060, 500), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text17_3, (120, 150), font, (255, 255, 255), scroll_offset)
-            display_text(screen, "To know more about The old lady Press on Beth", (140, 450), font0, (205, 210, 155),
-                         scroll_offset)
-            draw_line(screen, 130, HEIGHT - 190, WIDTH - 130, HEIGHT - 190, 1, (109, 69, 38), scroll_offset,
-                      line_visible)
+            display_text(screen, "To know more about The old lady Press on Beth", (140, 450), font0, (205, 210, 155), scroll_offset)
+            draw_line(screen, 130, HEIGHT - 190, WIDTH - 130, HEIGHT - 190, 1, (109, 69, 38), scroll_offset, line_visible)
             button17_5.draw(screen, scroll_offset)
             Beth.draw(screen, scroll_offset)
 
@@ -873,6 +868,7 @@ def play_game2():
         if done17_5:
             done17_3 = False
             dn = False
+            Beth.clicked = True
             draw_text_box(screen, (90, 120), (1060, 410), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text17_5, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 350, WIDTH - 130, HEIGHT - 350, 1, (109, 69, 38), scroll_offset,
@@ -972,11 +968,13 @@ def play_game2():
             display_text(screen, "Press read to keep reading the story ", (150, 440), font0, (255, 255, 255),  scroll_offset)
             draw_line(screen, 130, HEIGHT - 190, WIDTH - 130, HEIGHT - 190, 1, (109, 69, 38), scroll_offset, line_visible)
             button19_8.draw(screen, scroll_offset)
+            Story.draw(screen, scroll_offset)
         if done19_8:
             done18_2 = False
             done17_3 = False
             done19 = False
             done19_7 = False
+            Story.clicked = True
             draw_text_box(screen, (90, 90), (1060, 480), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text19_6, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 250, WIDTH - 130, HEIGHT - 250, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -1087,6 +1085,7 @@ def play_game2():
             done18_2 = False
             done17_3 = False
             done19 = False
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 1000), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "FEW WEEKS LATER..", (330, 90), font2, (168, 127, 71), scroll_offset)
             display_text(screen, text21, (120, 200), font, (255, 255, 255), scroll_offset)
@@ -1101,6 +1100,8 @@ def play_game2():
             done18_2 = False
             done17_3 = False
             done19 = False
+            done20_5 = False
+            Royal.clicked = True
             draw_text_box(screen, (90, 60), (1060, 1180), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text21_1, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 420, WIDTH - 130, HEIGHT + 420, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -1112,6 +1113,7 @@ def play_game2():
             done18_2 = False
             done17_3 = False
             done19 = False
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 1060), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text21_2, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 300, WIDTH - 130, HEIGHT + 300, 1, (109, 69, 38), scroll_offset,  line_visible)
@@ -1135,6 +1137,7 @@ def play_game2():
             done21_2 = False
             done20_3 = False
             done17_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 120), (1060, 450), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text22_1, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 250, WIDTH - 130, HEIGHT - 250, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -1150,6 +1153,7 @@ def play_game2():
             done19_2 = False
             done19_4 = False
             done19_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 180), (1060, 250), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text22_2, (120, 230), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 380, WIDTH - 130, HEIGHT - 380, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -1166,6 +1170,7 @@ def play_game2():
             done19_2 = False
             done19_4 = False
             done19_3 = False
+            done20_5 = False
         if done24:
             done21_3 = False
             done21_2 = False
@@ -1177,7 +1182,7 @@ def play_game2():
             done19_2 = False
             done19_4 = False
             done19_3 = False
-
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 1380), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text23, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 630, WIDTH - 130, HEIGHT + 630, 1, (109, 69, 38), scroll_offset,  line_visible)
@@ -1194,6 +1199,7 @@ def play_game2():
             done19_2 = False
             done19_4 = False
             done19_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 800), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text24, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 50, WIDTH - 130, HEIGHT + 50, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -1224,6 +1230,7 @@ def play_game2():
             done25 = False
             done20_3 = False
             done17_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 90), (1060, 510), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text26, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 290, WIDTH - 130, HEIGHT - 290, 1, (109, 69, 38), scroll_offset,  line_visible)
@@ -1235,6 +1242,7 @@ def play_game2():
             done26 = False
             done17_3 = False
             done20_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 200), (1060, 270), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "Wrong try again", (150, 240), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 370, WIDTH - 130, HEIGHT - 370, 1, (109, 69, 38), scroll_offset,  line_visible)
@@ -1245,6 +1253,7 @@ def play_game2():
             done27_1 = False
             done17_3 = False
             done20_3 = False
+            done20_5 = False
         if done27_2:
             done21_3 = False
             done26 = False
@@ -1273,6 +1282,7 @@ def play_game2():
             done28 = False
             done17_3 = False
             done20_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 1100), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text30, (120, 90), font, (255, 255, 255), scroll_offset)
             display_text(screen, text30_1, (120, 320), font, (255, 255, 255), scroll_offset)
@@ -1287,6 +1297,7 @@ def play_game2():
             done27_3 = False
             done29 = False
             done17_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 200), (1060, 240), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "Great idea! It’ll keep you close to thalos.", (120, 250), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 380, WIDTH - 130, HEIGHT - 380, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -1298,6 +1309,7 @@ def play_game2():
             done27_3 = False
             done29 = False
             done17_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 200), (1060, 250), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "the tree is too far away, you have to stay close to thalos ", (150, 250), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 380, WIDTH - 130, HEIGHT - 380, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -1311,6 +1323,7 @@ def play_game2():
             done30_1 = False
             done20_3 = False
             done17_3 = False
+            done20_5 = False
             draw_text_box(screen, (90, 60), (1060, 770), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text32, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 40, WIDTH - 130, HEIGHT + 40, 1, (109, 69, 38), scroll_offset, line_visible)

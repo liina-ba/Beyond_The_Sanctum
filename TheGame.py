@@ -741,6 +741,7 @@ def play_game():
             centaurs.draw(screen, scroll_offset)
         if done7_3:
             done7_1 = False
+            centaurs.clicked = True
             draw_text_box(screen, (90, 120), (1060, 400), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text8_1, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 300, WIDTH - 130, HEIGHT -300, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -883,6 +884,7 @@ def play_game():
 
         if done14_3:
             done14_2 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 150), (1060, 360), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text15, (120, 180), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 320, WIDTH - 130, HEIGHT - 320, 1, (109, 69, 38), scroll_offset,line_visible)

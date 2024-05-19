@@ -439,6 +439,7 @@ def start_game():
             button2.draw(screen, scroll_offset)
         if done2:
             done1 = False
+            Aiden.clicked = True
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 120, scroll_offset)
             display_text(screen, text2, (130, 150), font1, (168, 127, 71), scroll_offset)
             display_text(screen, text2_1, (120, 280), font0, (255, 255, 255), scroll_offset)
@@ -462,6 +463,8 @@ def start_game():
 
         if done3:
             done8 = False
+            Sanctum.clicked = True
+            Grimrushers.clicked = True
             draw_text_box(screen, (90, 60), (1050, 630), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text1_1, (110, 110), font, 'white', scroll_offset)
             draw_line(screen, 130, HEIGHT - 130, WIDTH - 130, HEIGHT - 130, 1, (109, 69, 38), scroll_offset,line_visible)

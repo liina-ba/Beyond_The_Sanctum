@@ -578,6 +578,94 @@ def EndScreen():
         pygame.display.flip()
 
 
+def BethStory(screen):
+    pygame.init()
+    screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
+    #pygame.display.set_caption("My First Test")
+    background = pygame.image.load("resources/images/BG4.png")
+    continueButton = Button("> Contiue Reading the Story", (220, 450), 200, 50)
+    continue2 = Button("> Contiue Reading the Story", (220, 400), 200, 50)
+    font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
+    font1T = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 25)
+    backButton = Button("> Back to the game", (200, 400), 200, 50)
+    msg = """
+ Story Of Beth :
+ """
+    Story = """
+ tracing back to a time where women gifted  with vision and wisdom were
+ carefully chosen. 
+Since the creation of monsters, women from the Soliar tribe were selected 
+for their potential to safeguard the world's secrets. 
+Only the strongest and most competent among them was designated by the Guardian 
+of Ancient Secrets,
+ """
+
+    Story2 = """
+a mystical entity ensuring the preservation of knowledge for the greater good. 
+Beth explained that this rigorous selection ensured that the scripts,
+knowledge, and research left by the creators of monsters didn't fall 
+into wrong hands She continued by describing the fundamental principles 
+inscribed in ancient writings.According to these texts, 
+serum was the key to controlling some of the most powerful elements """
+
+    Story3 = """fire, light, and even intelligence itself. 
+But that wasn't all. There was also a more enigmatic power: 
+that of the voice, capable of manipulating minds and controlling thoughts. 
+This last gift, though formidable, 
+
+had to be wielded with great caution and unwavering wisdom.
+"""
+
+    DoneStory1 = False
+    DoneStory2 = False
+
+    running = True
+    while running:
+        mouse_pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                play_click_sound()
+                if continueButton.check_click(mouse_pos):
+                    DoneStory1 = True
+                elif continue2.check_click(mouse_pos):
+                    DoneStory2 = True
+                elif backButton.check_click(mouse_pos):
+                    return True
+
+        screen.fill((0, 0, 0))
+        screen.blit(background, (0, 0))
+        draw_text_box(screen, (90, 90), (1040, 460), (50, 50, 50), (109, 69, 38), 130)
+        display_multiline_text(screen, font1T, msg, (212, 175, 55), 120, 100)
+        display_multiline_text(screen, font2, Story, (255, 255, 255), 120, 170)
+        continueButton.draw(screen)
+        continueButton.check_hover(mouse_pos)
+
+        if DoneStory1:
+            screen.fill((0, 0, 0))
+            screen.blit(background, (0, 0))
+            draw_text_box(screen, (90, 90), (1040, 460), (50, 50, 50), (109, 69, 38), 130)
+            display_multiline_text(screen, font2, Story2, (255, 255, 255), 120, 120)
+            continue2.draw(screen)
+            continue2.check_hover(mouse_pos)
+
+        if DoneStory2:
+            screen.fill((0, 0, 0))
+            screen.blit(background, (0, 0))
+            draw_text_box(screen, (90, 90), (1040, 450), (50, 50, 50), (109, 69, 38), 130)
+            display_multiline_text(screen, font2, Story3, (255, 255, 255), 150, 150)
+            backButton.draw(screen)
+            backButton.check_hover(mouse_pos)
+
+        cursor_img = pygame.image.load('resources/images/Sans titre.png')
+        cursor_img = pygame.transform.scale(cursor_img, (40, 40))  # Resize cursor image
+        cursor_pos = pygame.mouse.get_pos()
+        screen.blit(cursor_img, cursor_pos)
+        pygame.mouse.set_visible(False)
+
+        pygame.display.update()
+    return True
 
 
 
