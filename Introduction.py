@@ -393,10 +393,10 @@ def start_game():
                     Aiden.clicked = False  # Reset the clicked flag
                     Aiden.visible = True  # Make the button visible again
 
-                elif Sanctum.check_click(mouse_pos):
+                elif Sanctum.check_click(mouse_pos) :
                     Sanctum.clicked = False  # Reset the clicked flag
                     Sanctum.visible = True  # Make the button visible again
-                elif Grimrushers.check_click(mouse_pos):
+                elif Grimrushers.check_click(mouse_pos) :
                     Grimrushers.clicked = False  # Reset the clicked flag
                     Grimrushers.visible = True  # Make the button visible again
 
@@ -422,7 +422,6 @@ def start_game():
             button0.draw(screen, scroll_offset)
         if done:
             display_text0 = False
-
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 120, scroll_offset)
             screen.blit(resized_image, (500, 120 + scroll_offset))
             display_text(screen, text0_3, (120, 350), font0, (255,255,255), scroll_offset)

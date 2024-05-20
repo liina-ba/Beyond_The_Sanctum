@@ -262,4 +262,4 @@ def typing_racer_game():
         screen.blit(cursor_img, cursor_pos)
 
         pygame.display.flip()
-typing_racer_game()
+
