@@ -3,12 +3,12 @@ import sys
 import CharactersDetails
 pygame.mouse.set_visible(False)
 sound_allowed = True
+
 def play_click_sound(sound_allowed):
     if sound_allowed:
         click_sound.play()
 
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
-
 
 def start_game():
     global scroll_speed, sound_allowed

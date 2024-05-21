@@ -806,9 +806,10 @@ def play_game2(sound_allowed):
 
         if done16_5:
             import typingRacer
-            typingRacer.typing_racer_game()
+            typingRacer.typing_racer_game(sound_allowed)
         if dn:
             done16_4 = False
+            scroll_offset = 0
             draw_text_box(screen, (90, 60), (1060, 590), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text17, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 190, WIDTH - 130, HEIGHT - 190, 1, (109, 69, 38), scroll_offset,
@@ -1786,7 +1787,6 @@ def play_game2(sound_allowed):
             button49.draw(screen, scroll_offset)
         if done49:
             CharactersDetails.EndScreen()
-
 
         # Draw the cursor
         cursor_img = pygame.image.load('resources/images/Sans titre.png')

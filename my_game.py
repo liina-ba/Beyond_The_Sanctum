@@ -17,7 +17,6 @@ pygame.init()
 music_allowed = True
 
 
-
 # Création de la fenêtre d'affichage
 SCREEN = pygame.display.set_mode((1238, 700))
 pygame.display.set_caption("Menu")

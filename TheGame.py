@@ -1034,7 +1034,6 @@ def play_game(sound_allowed):
         cursor_pos = pygame.mouse.get_pos()
         screen.blit(cursor_img, cursor_pos)
 
-
         pygame.display.update()
         pygame.display.flip()
 
@@ -1046,4 +1045,3 @@ def play_game(sound_allowed):
                 scroll_offset += scroll_speed
         if keys[pygame.K_DOWN]:
             scroll_offset -= scroll_speed
-

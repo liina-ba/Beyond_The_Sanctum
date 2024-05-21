@@ -3,17 +3,14 @@ import sys
 import pygame
 import random
 
-
-def typing_racer_game():
+def typing_racer_game(sound_allowed):
     global high_score
     global word_index
     pygame.init()
 
-    list_words = ["aiden", "wisdom", "is",  "the", "solution"]
+    list_words = ["wisdom", "is",  "the", "solution","aiden"]
     wordlist = list_words
     word_index = 0
-    len_indexes = []
-    length = 1
 
     WIDTH = 1238
     HEIGHT = 700
@@ -185,7 +182,7 @@ def typing_racer_game():
             if quit_butt:
                 check_high_score()
                 import TheGame_2
-                TheGame_2.play_game2()
+                TheGame_2.play_game2(sound_allowed)
 
         if new_level and not pz:
             word_objects = generate_level()
@@ -215,7 +212,7 @@ def typing_racer_game():
             if event.type == pygame.QUIT:
                 check_high_score()
                 import TheGame_2
-                TheGame_2.play_game2()
+                TheGame_2.play_game2(sound_allowed)
 
 
             if event.type == pygame.KEYDOWN:

@@ -13,7 +13,6 @@ pygame.init()
 font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 20)
 font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
 
-
 def display_multiline_text(window, font, text, color, x, y,timeSleep=2):
     lines = text.split('\n')
     rendered_lines = [font.render(line, True, color) for line in lines]
