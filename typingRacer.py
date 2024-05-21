@@ -137,7 +137,7 @@ def typing_racer_game():
         vertical_spacing = (HEIGHT - 150) // level
 
         for i in range(level):
-            speed = random.randint(2, 3)
+            speed = random.randint(2, 3)+1
             y_pos = random.randint(10 + (i * vertical_spacing), (i + 1) * vertical_spacing)
             x_pos = random.randint(WIDTH, WIDTH + 1000)
             index = word_index  # Use the current word index

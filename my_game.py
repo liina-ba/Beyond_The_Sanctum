@@ -3,6 +3,7 @@ import TheGame
 import time
 import pygame
 from bottons import Button
+sound_allowed = True
 # Load the image
 icon = pygame.image.load('resources/images/LOGOsanctum.png')
 
@@ -15,8 +16,7 @@ pygame.init()
 # Définition de la variable globale allowed pour la musique de fond
 music_allowed = True
 
-# Définition de la variable globale allowed pour les sons des boutons
-sound_allowed = True
+
 
 # Création de la fenêtre d'affichage
 SCREEN = pygame.display.set_mode((1238, 700))
@@ -75,7 +75,7 @@ def options():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     if sound_allowed:
                         back_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
@@ -92,8 +92,8 @@ def options():
 
         pygame.display.update()
 
-def play_click_sound():
-    global sound_allowed
+def play_click_sound(sound_allowed):
+
     if sound_allowed:
         click_sound.play()
 # Définition de la fonction principale pour le menu principal
@@ -141,12 +141,12 @@ def main_menu():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                TheGame.play_click_sound(sound_allowed)
 
                 # Placez ici le reste de votre logique de clic pour les autres boutons
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
 
-                    TheGame.play_game()
+                    TheGame.play_game(sound_allowed)
 
                 elif OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
 

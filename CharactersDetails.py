@@ -4,8 +4,9 @@ from pygame import QUIT
 import sys
 pygame.init()
 
-def play_click_sound():
-    click_sound.play()
+def play_click_sound(sound_allowed):
+    if sound_allowed:
+        click_sound.play()
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 
 pygame.init()
@@ -92,7 +93,7 @@ class Button:
         return False
 
 
-def centaurs(screen):
+def centaurs(screen,sound_allowed):
 
     font1 = pygame.font.Font("resources/fonts/Cinzel-VariableFont_wght.ttf", 20)
     font2 = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
@@ -129,7 +130,7 @@ def centaurs(screen):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if CtnReading.check_click(mouse_pos):
                     done = True
                 elif back.check_click(mouse_pos):
@@ -161,7 +162,7 @@ def centaurs(screen):
     return True
 
 
-def Aiden(screen):
+def Aiden(screen,sound_allowed):
 
     background = pygame.image.load("resources/images/BG4.png")
     Aiden = pygame.image.load("resources/images/Aiden3.png")
@@ -177,7 +178,7 @@ def Aiden(screen):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if back.check_click(mouse_pos):
                     return True
 
@@ -200,7 +201,7 @@ def Aiden(screen):
 
     return True
 
-def Sanctum (screen):
+def Sanctum (screen,sound_allowed):
 
     pygame.init()
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
@@ -220,7 +221,7 @@ def Sanctum (screen):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if backButton.check_click(mouse_pos):
                     return True
 
@@ -241,7 +242,7 @@ def Sanctum (screen):
     return True
 
 
-def BethDescreption(screen):
+def BethDescreption(screen, sound_allowed):
     pygame.init()
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
     background = pygame.image.load("resources/images/BG4.png")
@@ -270,7 +271,7 @@ def BethDescreption(screen):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if backBtn.check_click(mouse_pos):
                     return True
 
@@ -292,7 +293,7 @@ def BethDescreption(screen):
     return True
 
 
-def CryptedLetter(screen):
+def CryptedLetter(screen, sound_allowed):
      pygame.init()
      screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
      background = pygame.image.load("resources/images/BG4.png")
@@ -308,7 +309,7 @@ def CryptedLetter(screen):
                if event.type == pygame.QUIT:
                    running = False
                elif event.type == pygame.MOUSEBUTTONDOWN:
-                   play_click_sound()
+                   play_click_sound(sound_allowed)
                    if backButton.check_click(mouse_pos):
                        return True
 
@@ -329,7 +330,7 @@ def CryptedLetter(screen):
            pygame.display.flip()
      return True
 
-def RoyalCeremony(screen):
+def RoyalCeremony(screen,sound_allowed):
      pygame.init()
      pygame.display.set_caption("Beyond The Sanctum")
      screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
@@ -353,7 +354,7 @@ def RoyalCeremony(screen):
              if event.type == pygame.QUIT:
                  running = False
              elif event.type == pygame.MOUSEBUTTONDOWN:
-                 play_click_sound()
+                 play_click_sound(sound_allowed)
                  if backButton.check_click(mouse_pos):
                      return True
 
@@ -377,7 +378,7 @@ def RoyalCeremony(screen):
      return True
 
 
-def Grimrushers(screen):
+def Grimrushers(screen, sound_allowed):
     pygame.init()
     pygame.display.set_caption("Beyond The Sanctum")
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
@@ -440,7 +441,7 @@ def Grimrushers(screen):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if ButtonGRim1.check_click(mouse_pos):
                     Donediscription1 = True
                 elif ButtonGrimPics.check_click(mouse_pos):
@@ -578,7 +579,7 @@ def EndScreen():
         pygame.display.flip()
 
 
-def BethStory(screen):
+def BethStory(screen,sound_allowed):
     pygame.init()
     screen = pygame.display.set_mode((1238, 700), pygame.RESIZABLE)
     #pygame.display.set_caption("My First Test")
@@ -626,7 +627,7 @@ had to be wielded with great caution and unwavering wisdom.
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if continueButton.check_click(mouse_pos):
                     DoneStory1 = True
                 elif continue2.check_click(mouse_pos):

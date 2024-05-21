@@ -2,15 +2,16 @@ import pygame
 import sys
 import CharactersDetails
 pygame.mouse.set_visible(False)
-
-def play_click_sound():
-    click_sound.play()
+sound_allowed = True
+def play_click_sound(sound_allowed):
+    if sound_allowed:
+        click_sound.play()
 
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
 
 
 def start_game():
-    global scroll_speed
+    global scroll_speed, sound_allowed
     pygame.init()
 
 
@@ -124,8 +125,6 @@ def start_game():
                 return True
             return False
 
-    def button_click_action():
-        CharactersDetails.centaurs(screen)
 
     class CharButton1:
         def __init__(self, text, position, width, height, action=None):
@@ -301,12 +300,12 @@ def start_game():
             alpha -= increment
 
     def button_click_action():
-        CharactersDetails.Aiden(screen)
+        CharactersDetails.Aiden(screen,sound_allowed)
     def button1_click_action():
-        CharactersDetails.Sanctum(screen)
+        CharactersDetails.Sanctum(screen,sound_allowed)
 
     def button2_click_action():
-        CharactersDetails.Grimrushers(screen)
+        CharactersDetails.Grimrushers(screen,sound_allowed)
 
     def draw_line(surface, x1, y1, x2, y2, width, color, scroll_offset, visible=True):
         if visible:
@@ -354,7 +353,7 @@ def start_game():
             if events.type == pygame.QUIT:
                 pygame.quit()
             elif events.type == pygame.MOUSEBUTTONDOWN:
-                click_sound.play()
+                play_click_sound(sound_allowed)
                 if button0.check_click(mouse_pos):
                     done = True
                     scroll_offset = 0

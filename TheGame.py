@@ -5,10 +5,11 @@ import CharactersDetails
 pygame.mouse.set_visible(False)
 
 
-def play_click_sound():
-    click_sound.play()
+def play_click_sound(sound_allowed):
+    if sound_allowed:
+        click_sound.play()
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
-def play_game():
+def play_game(sound_allowed):
     global scroll_speed
 
     WIDTH, HEIGHT = 1238, 700
@@ -85,8 +86,7 @@ def play_game():
 
     tex = "your fierce battle catches the attention of other Grimrushers lurking nearby and you find yourselves surrounded by a horde of snarling creatures, despite your best efforts, the sheer number of Grimrushers overwhelms you, with a heavy heart, you realize that victory is beyond your grasp and your journey comes to a premature end."
 
-    def button_click_action2():
-        CharactersDetails.BethDescreption(screen)
+
     class Button:
         def __init__(self, text, position, width, height):
             self.text = text
@@ -162,11 +162,9 @@ def play_game():
             return False
 
     def button_click_action():
-        CharactersDetails.centaurs(screen)
+        CharactersDetails.centaurs(screen,sound_allowed)
     def button_click_action3():
-        CharactersDetails.CryptedLetter(screen)
-    def button_click_action1():
-        CharactersDetails.RoyalCeremony(screen)
+        CharactersDetails.CryptedLetter(screen,sound_allowed)
 
     def display_text(surface, text, pos, font, color, scroll_offset):
         max_width = WIDTH - 110  # Maximum line width
@@ -411,7 +409,7 @@ def play_game():
                 pygame.quit()
 
             if events.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if button0.check_click(mouse_pos) :
                     done = True
                     scroll_offset = 0
@@ -858,8 +856,6 @@ def play_game():
 
         if done37_1:
             break
-            #import my_game
-            #my_game.main_menu()
 
         elif done13_2:
             done13 = False
@@ -967,7 +963,7 @@ def play_game():
             button16_4.draw(screen, scroll_offset)
         if done16_4:
             import TheGame_2
-            TheGame_2.play_game2()
+            TheGame_2.play_game2(sound_allowed)
 
         if done10_2:
             done9_2_2 = False

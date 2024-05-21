@@ -5,10 +5,11 @@ import CharactersDetails
 pygame.mouse.set_visible(False)
 
 
-def play_click_sound():
-    click_sound.play()
+def play_click_sound(sound_allowed):
+    if sound_allowed:
+        click_sound.play()
 click_sound = pygame.mixer.Sound("resources/sounds/mouse-click-153941.mp3")
-def play_game2():
+def play_game2(sound_allowed):
     global scroll_speed
 
     WIDTH, HEIGHT = 1238, 700
@@ -88,7 +89,7 @@ def play_game2():
     text47 = "Thalos : “yes! Aiden, they are all connected!”\n\n“what do you mean?”\n\nThalos : “look at that dying cell of the body, it’s the same cell in all the bodies, they carry the kings blood, if he dies, they all do”\n\nTriumphant, you leave the castle and realize that all the Grimrushers are also dead. It is then that you understand that the Grimrushers were linked not only to the potion but also to the king himself, as they all carried his cells in their bodies and were connected to him.\n\nsince that day, humanity has experienced better days, and Aiden has become their hero and savior, and his name will be part of history now."
 
     def button_click_action2():
-        CharactersDetails.BethDescreption(screen)
+        CharactersDetails.BethDescreption(screen,sound_allowed)
 
     class Button:
         def __init__(self, text, position, width, height):
@@ -166,9 +167,9 @@ def play_game2():
 
 
     def button_click_action1():
-        CharactersDetails.RoyalCeremony(screen)
+        CharactersDetails.RoyalCeremony(screen,sound_allowed)
     def button_click_action4():
-        CharactersDetails.BethStory(screen)
+        CharactersDetails.BethStory(screen,sound_allowed)
 
     def display_text(surface, text, pos, font, color, scroll_offset):
         max_width = WIDTH - 110  # Maximum line width
@@ -466,7 +467,7 @@ def play_game2():
                 pygame.quit()
             Wisdom.handle_event(events, scroll_offset)
             if events.type == pygame.MOUSEBUTTONDOWN:
-                play_click_sound()
+                play_click_sound(sound_allowed)
                 if button16_5.check_click(mouse_pos) and done16_4:
                     done16_5 = True
                     scroll_offset = 0
