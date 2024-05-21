@@ -117,12 +117,9 @@ def play_game(sound_allowed):
             if self.rect.collidepoint(mouse_pos) and not self.clicked:
                 #self.clicked = True
                 self.color = self.clicked_color
-                #self.visible = False  # Button is no longer visible
                 return True
             return False
 
-        def reset_click(self):
-            self.clicked = False
 
     class CharButton:
         def __init__(self, text, position, width, height, action=None):
@@ -208,73 +205,6 @@ def play_game(sound_allowed):
             pygame.draw.line(surface, color, (x1, y1 + scroll_offset), (x2, y2 + scroll_offset), width)
 
 
-    class TextField:
-        def __init__(self, position, size, border_color, text_color, max_chars, correct_word, callback=None,  wrong_callback=None):
-            self.rect = pygame.Rect(position, size)
-            self.border_color = border_color
-            self.text_color = text_color
-            self.max_chars = max_chars
-            self.text = ""
-            self.active = False
-            self.correct_word = correct_word
-            self.callback = callback
-            self.wrong_callback = wrong_callback
-            self.gameover = False
-            self.cursor_visible = True
-            self.cursor_timer = 0
-
-
-
-        def draw(self, surface, scroll_offset):
-            # Adjust the position of the text field based on the scroll offset
-            adjusted_y = self.rect.y + scroll_offset
-
-            # Draw the text field at the adjusted position
-            adjusted_rect = pygame.Rect(self.rect.x, adjusted_y, self.rect.width, self.rect.height)
-            pygame.draw.rect(surface, self.border_color, adjusted_rect, 1)
-            font = pygame.font.Font("resources/fonts/EBGaramond-VariableFont_wght.ttf", 25)
-            text_surface = font.render(self.text, True, self.text_color)
-            surface.blit(text_surface, (self.rect.x + 5, adjusted_y + 5))
-
-            # Draw cursor if active
-            if self.active and self.cursor_visible:
-                cursor_x = self.rect.x + 5 + font.size(self.text)[0]
-                cursor_y = adjusted_y + 5
-                pygame.draw.line(surface, self.text_color, (cursor_x, cursor_y),
-                                 (cursor_x, cursor_y + font.size("A")[1]))
-
-            # Display message if any
-
-        def handle_event(self, event, scroll_offset):
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                # Check if mouse click is inside the text field
-                if self.rect.collidepoint((event.pos[0], event.pos[1] - scroll_offset)):
-                    self.active = True
-                else:
-                    self.active = False
-            if event.type == pygame.KEYDOWN:
-                if self.active:
-                    if event.key == pygame.K_RETURN:
-                        # Check if entered text is correct
-                        if self.text == self.correct_word:
-                            # Execute callback function if provided
-                            if self.callback:
-                                self.callback()
-                        else:
-                            if self.wrong_callback:
-                                self.wrong_callback()
-                    elif event.key == pygame.K_BACKSPACE:
-                        self.text = self.text[:-1]
-                    elif len(self.text) < self.max_chars:
-                        self.text += event.unicode
-
-        def update_cursor(self, dt):
-            # Update cursor visibility every 500 milliseconds
-            self.cursor_timer += dt
-            if self.cursor_timer >= 500:
-                self.cursor_visible = not self.cursor_visible
-                self.cursor_timer %= 500
-
 
 
     done = False
@@ -297,7 +227,6 @@ def play_game(sound_allowed):
     done7_3 = False
     done8_1 = False
     done8_2 = False
-    centaur = False
     done8_3 = False
     done9_1 = False
     done9_2 = False
@@ -410,7 +339,7 @@ def play_game(sound_allowed):
 
             if events.type == pygame.MOUSEBUTTONDOWN:
                 play_click_sound(sound_allowed)
-                if button0.check_click(mouse_pos) :
+                if button0.check_click(mouse_pos):
                     done = True
                     scroll_offset = 0
                 elif  button1.check_click(mouse_pos) and done:
@@ -648,6 +577,8 @@ def play_game(sound_allowed):
 
 
         if done1_0:
+            Script.clicked = True
+            centaurs.clicked = True
             draw_text_box(screen, (90, 90), (1060, 520), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text0, (120, 150), font, (255,255,255), scroll_offset)
             draw_line(screen, 130, HEIGHT -200, WIDTH - 130, HEIGHT -200, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -656,6 +587,7 @@ def play_game(sound_allowed):
         if done :
             done1_0 = False
             button0.clicked = True
+            Script.clicked = True
             draw_text_box(screen, (90, 120), (1060, 420), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text1, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 270, WIDTH - 130, HEIGHT - 270, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -664,6 +596,7 @@ def play_game(sound_allowed):
         if done1:
             done = False
             button1.clicked = True
+            Script.clicked = True
             draw_text_box(screen, (90, 90), (1060, 500), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text2, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 300, WIDTH - 130, HEIGHT - 300, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -675,6 +608,7 @@ def play_game(sound_allowed):
             done1 = False
             button2_1.clicked = True
             button2_2.clicked = True
+            Script.clicked = True
             draw_text_box(screen, (90, 60), (1060, 900), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text2_1, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 90, WIDTH - 130, HEIGHT + 90, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -683,7 +617,7 @@ def play_game(sound_allowed):
         if done3_1:
             done = False
             done2_1 = False
-
+            Script.clicked = True
             draw_text_box(screen, (90, 60), (1060, 900), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text3_1, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT + 130, WIDTH - 130, HEIGHT + 130, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -691,7 +625,7 @@ def play_game(sound_allowed):
         if done4_2:
             done = False
             done3_1 = False
-
+            Script.clicked = True
             draw_text_box(screen, (90, 60), (1060, 720), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text4_1, (120, 110), font, (255, 255, 255), scroll_offset)
             display_text(screen, text5_1, (120, 470), font, (255, 255, 255), scroll_offset)
@@ -703,6 +637,7 @@ def play_game(sound_allowed):
             display_text(screen, text5_6, (420, 90), font2, (168, 127, 71), scroll_offset)
             display_text(screen, text5_2, (150, 230), font0, (255, 255, 255), scroll_offset)
             button5_2.draw(screen, scroll_offset)
+            Script.clicked = True
         if done5_2:
             done5_1 = False
             draw_text_box(screen, (90, 60), (1060, 655), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
@@ -715,6 +650,7 @@ def play_game(sound_allowed):
 
         if done5_3:
             done5_2 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 90), (1060, 560), (50, 50, 50), (109, 69, 38), 130,scroll_offset)
             display_text(screen, text6_1, (120, 120), font, (255, 255, 255), scroll_offset)
             display_text(screen, text6_2, (130, 260), font0, (255,255,255), scroll_offset)
@@ -723,13 +659,14 @@ def play_game(sound_allowed):
             button6_1.draw(screen, scroll_offset)
         if done6_1:
             done5_3 = False
-
+            Script.clicked = True
             draw_text_box(screen, (90, 90), (1060, 750), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text7_1, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT +40, WIDTH - 130, HEIGHT +40, 1, (109, 69, 38), scroll_offset, line_visible)
             button7_1.draw(screen, scroll_offset)
         if done7_1:
             done6_1 = False
+            centaurs.clicked = False
             draw_text_box(screen, (90, 60), (1060, 1470), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text7_2, (380, 90), font2, (168, 127, 71), scroll_offset)
             display_text(screen, text7_3, (120, 230), font, (255, 255, 255), scroll_offset)
@@ -740,24 +677,27 @@ def play_game(sound_allowed):
         if done7_3:
             done7_1 = False
             centaurs.clicked = True
+            Script.clicked = True
             draw_text_box(screen, (90, 120), (1060, 400), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text8_1, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 300, WIDTH - 130, HEIGHT -300, 1, (109, 69, 38), scroll_offset,line_visible)
             button8_1.draw(screen, scroll_offset)
         if done8_1:
             done7_3 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 120), (1060, 380), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text8_2, (120, 160), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 310, WIDTH - 130, HEIGHT - 310, 1, (109, 69, 38), scroll_offset,line_visible)
             button8_2.draw(screen, scroll_offset)
         if done8_2:
             done8_1 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 90), (1060, 500), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text8_3, (120, 120), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 500, WIDTH - 130, HEIGHT - 500, 1, (109, 69, 38), scroll_offset,line_visible)
             button8_3.draw(screen, scroll_offset)
         if done8_3:
-            #done8_2 = False
+            Script.clicked = True
             display_text(screen, text9_1, (120, 300), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 220, WIDTH - 130, HEIGHT - 220, 1, (109, 69, 38), scroll_offset,line_visible)
             button9_1.draw(screen, scroll_offset)
@@ -771,12 +711,14 @@ def play_game(sound_allowed):
             button9_2_2.draw(screen, scroll_offset)
         if done9_2:
             done9_1 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 200), (1060, 270), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text9_2_1, (120, 250), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 350, WIDTH - 130, HEIGHT - 350, 1, (109, 69, 38), scroll_offset, line_visible)
             button10_1.draw(screen, scroll_offset)
         elif done9_2_2:
             done9_1 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 120), (1060, 400), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text9_2_2, (120, 150), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 270, WIDTH - 130, HEIGHT - 270, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -785,6 +727,7 @@ def play_game(sound_allowed):
 
         if done10_1:
             done9_2 = False
+            Script.clicked = True
             draw_text_box(screen, (90, 200), (1060, 270), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text9_3, (120, 250), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 320, WIDTH - 130, HEIGHT - 320, 1, (109, 69, 38), scroll_offset, line_visible)
@@ -871,6 +814,7 @@ def play_game(sound_allowed):
             button14_2.draw(screen, scroll_offset)
         if done14_2:
             done14_1 = False
+            Script.clicked = False
             draw_text_box(screen, (90, 60), (1060, 620), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text14_3, (120, 90), font, (255, 255, 255), scroll_offset)
             display_text(screen, msg, (140, 550), font0, (205, 210, 155), scroll_offset)

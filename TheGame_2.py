@@ -334,7 +334,6 @@ def play_game2(sound_allowed):
     done27_3 = False
     done28 = False
     done29 = False
-    done30 = False
     done30_1 = False
     done30_2 = False
     done31_1 = False
@@ -790,7 +789,9 @@ def play_game2(sound_allowed):
         button49.check_hover(mouse_pos)
 
         if done16_4:
-
+            Beth.clicked = True
+            Royal.clicked = True
+            Story.clicked = True
             draw_text_box(screen, (90, 60), (1060, 700), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "The Riddle:", (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 120, HEIGHT - 575, WIDTH - 995, HEIGHT - 575, 1, (255, 255, 255), scroll_offset,
@@ -826,7 +827,6 @@ def play_game2(sound_allowed):
 
         if done17:
             dn = False
-            done15_4 = False
             draw_text_box(screen, (90, 60), (1060, 640), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text17_1, (120, 90), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 160, WIDTH - 130, HEIGHT - 160, 1, (109, 69, 38), scroll_offset,
@@ -846,7 +846,7 @@ def play_game2(sound_allowed):
             done17_1 = False
             done17 = False
             dn = False
-            done15_4 = False
+            Beth.clicked = False
             draw_text_box(screen, (90, 120), (1060, 500), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text17_3, (120, 150), font, (255, 255, 255), scroll_offset)
             display_text(screen, "To know more about The old lady Press on Beth", (140, 450), font0, (205, 210, 155), scroll_offset)
@@ -965,6 +965,7 @@ def play_game2(sound_allowed):
             done19 = False
             done19_5 = False
             done19_6 = False
+            Story.clicked = False
             draw_text_box(screen, (90, 90), (1060, 530), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text19_5, (120, 120), font, (255, 255, 255), scroll_offset)
             display_text(screen, "Press read to keep reading the story ", (150, 440), font0, (255, 255, 255),  scroll_offset)
@@ -1088,6 +1089,7 @@ def play_game2(sound_allowed):
             done17_3 = False
             done19 = False
             done20_5 = False
+            Royal.clicked = False
             draw_text_box(screen, (90, 60), (1060, 1000), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "FEW WEEKS LATER..", (330, 90), font2, (168, 127, 71), scroll_offset)
             display_text(screen, text21, (120, 200), font, (255, 255, 255), scroll_offset)

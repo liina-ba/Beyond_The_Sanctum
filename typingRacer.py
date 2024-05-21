@@ -16,7 +16,6 @@ def typing_racer_game(sound_allowed):
     HEIGHT = 700
     screen = pygame.display.set_mode([WIDTH, HEIGHT])
     pygame.display.set_caption('Typing Racer!')
-    surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
     timer = pygame.time.Clock()
     fps = 60
 

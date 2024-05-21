@@ -83,7 +83,6 @@ def start_game():
             if self.rect.collidepoint(mouse_pos) and not self.clicked:
                 self.clicked = True
                 self.color = self.clicked_color
-                #self.visible = False  # Button is no longer visible
                 return True
             return False
 
@@ -110,35 +109,7 @@ def start_game():
                 font_rect = font_surface.get_rect(center=self.rect.center)
                 surface.blit(font_surface, font_rect)
 
-        def check_hover(self, mouse_pos):
-            if self.rect.collidepoint(mouse_pos):
-                self.color = self.hover_color
-            else:
-                self.color = (168, 127, 71)  # Reset to default color
-
-        def check_click(self, mouse_pos):
-            if self.rect.collidepoint(mouse_pos) and not self.clicked:
-                self.clicked = True
-                self.color = self.clicked_color
-                if self.action:
-                    self.action()  # Perform the action
-                return True
-            return False
-
-
-    class CharButton1:
-        def __init__(self, text, position, width, height, action=None):
-            self.text = text
-            self.initial_position = position
-            self.rect = pygame.Rect(position, (width, height))
-            self.color = (168, 127, 71)  # Default color for text
-            self.hover_color = (210, 182, 143)  # Color when hovered
-            self.clicked_color = (0, 0, 0)  # Color when clicked
-            self.clicked = False
-            self.visible = True  # Flag to determine if button is visible
-            self.action = action  # Action to perform when clicked
-
-        def draw(self, surface, scroll_offset):
+        def draw1(self, surface, scroll_offset):
             if self.visible:  # Only draw if visible
                 # Adjust the button position based on scroll_offset
                 adjusted_position = (self.initial_position[0], self.initial_position[1] + scroll_offset)
@@ -162,43 +133,6 @@ def start_game():
                     self.action()  # Perform the action
                 return True
             return False
-
-    def display_text(surface, text, pos, font, color, scroll_offset):
-        max_width = WIDTH - 110  # Maximum line width
-        space = font.size(' ')[0]
-        line_spacing = 20  # Adjust this value for desired line spacing
-        x, y = pos
-        words = [word.split(' ') for word in text.splitlines()]
-        for line in words:
-            for word in line:
-                word_surface = font.render(word, True, color)
-                word_width, word_height = word_surface.get_size()
-                if x + word_width >= max_width:
-                    x = pos[0]
-                    y += word_height + line_spacing
-                surface.blit(word_surface, (x, y + scroll_offset))
-                x += word_width + space
-            x = pos[0]
-            y += word_height + line_spacing
-
-    def draw_text_box(surface, position, size, background_color, border_color, alpha1, scroll_offset):
-        # Define the padding and border width
-        padding = 15
-        border_width = 1
-
-        # Adjust the position based on the scroll offset
-        adjusted_position = (position[0], position[1] + scroll_offset)
-
-        # Create a transparent surface for the box
-        box_surface = pygame.Surface(size, pygame.SRCALPHA)
-        box_surface.fill((*background_color, alpha1))
-
-        # Draw the border rectangle on the transparent surface
-        border_rect = pygame.Rect((0, 0), size)
-        pygame.draw.rect(box_surface, border_color, border_rect, border_width)
-
-        # Blit the box surface onto the main surface
-        surface.blit(box_surface, adjusted_position)
 
 
     # Function to display text with word wrapping
@@ -321,8 +255,8 @@ def start_game():
     button6 = Button(">  NO.", (120, 490), 200, 40)
     button7 = Button("→ Bye", (490, 480), 200, 50)
     Aiden = CharButton(" Aiden", (522, 346), 200, 50, button_click_action)
-    Sanctum = CharButton1(" Sanctum", (55, 220), 200, 50, button1_click_action)
-    Grimrushers = CharButton1(" Grimrushers", (435, 435), 200, 50, button2_click_action)
+    Sanctum = CharButton(" Sanctum", (55, 220), 200, 50, button1_click_action)
+    Grimrushers = CharButton(" Grimrushers", (435, 435), 200, 50, button2_click_action)
 
     scroll_speed = 50
     done = False
@@ -339,7 +273,6 @@ def start_game():
 
 
     image_path = "resources/images/logo.png"
-    target_size = (450, 450)
     display_image_and_text_slow(image_path, t1, 1, image_position=(500, 90), text_position=(240, 350))
     screen.fill((0, 0, 0))
     screen.blit(background, (0, 0))
@@ -359,7 +292,7 @@ def start_game():
                     scroll_offset = 0
                 elif button1.check_click(mouse_pos) and done:
                     done1 = True
-                    scroll_offset = 0  # Reset scroll offset to display text from the beginning
+                    scroll_offset = 0
                 elif button2.check_click(mouse_pos) and done1:
                     done2 = True
                     scroll_offset = 0
@@ -413,6 +346,9 @@ def start_game():
         Grimrushers.check_hover(mouse_pos)
 
         if display_text0:
+            Aiden.clicked = True
+            Grimrushers.clicked = True
+            Sanctum.clicked = True
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             screen.blit(resized_image, (500, 120 + scroll_offset))
             display_text(screen, t, (120, 350), font1, (168, 127, 71), scroll_offset)
@@ -421,6 +357,7 @@ def start_game():
             button0.draw(screen, scroll_offset)
         if done:
             display_text0 = False
+
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 120, scroll_offset)
             screen.blit(resized_image, (500, 120 + scroll_offset))
             display_text(screen, text0_3, (120, 350), font0, (255,255,255), scroll_offset)
@@ -428,7 +365,7 @@ def start_game():
 
         if done1:
             done = False
-
+            Aiden.clicked = False
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 120, scroll_offset)
             screen.blit(resized_image, (500, 120 + scroll_offset))
             display_text(screen, text0_4, (120, 350), font0, (255, 255, 255), scroll_offset)
@@ -437,7 +374,6 @@ def start_game():
             button2.draw(screen, scroll_offset)
         if done2:
             done1 = False
-            Aiden.clicked = True
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 120, scroll_offset)
             display_text(screen, text2, (130, 150), font1, (168, 127, 71), scroll_offset)
             display_text(screen, text2_1, (120, 280), font0, (255, 255, 255), scroll_offset)
@@ -449,6 +385,8 @@ def start_game():
 
         if done8:
             done2 = False
+            Grimrushers.clicked = False
+            Sanctum.clicked = False
             draw_text_box(screen, (90, 60), (1050, 950), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, t2, (130, 110), font2, (168, 127, 71), scroll_offset)
             display_text(screen, "Press on Sanctum or Grimrushers to see the Sanctum and know more about these creatures!!", (150, 830), font3, (205, 210, 155), scroll_offset)
@@ -456,13 +394,14 @@ def start_game():
             line_visible = True
             draw_line(screen, 130, HEIGHT + 190, WIDTH - 130, HEIGHT + 190, 1, (109, 69, 38), scroll_offset,line_visible)
             button3.draw(screen, scroll_offset)
-            Sanctum.draw(screen, scroll_offset)
-            Grimrushers.draw(screen, scroll_offset)
+            Sanctum.draw1(screen, scroll_offset)
+            Grimrushers.draw1(screen, scroll_offset)
 
         if done3:
             done8 = False
             Sanctum.clicked = True
             Grimrushers.clicked = True
+            button4.clicked = False
             draw_text_box(screen, (90, 60), (1050, 630), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text1_1, (110, 110), font, 'white', scroll_offset)
             draw_line(screen, 130, HEIGHT - 130, WIDTH - 130, HEIGHT - 130, 1, (109, 69, 38), scroll_offset,line_visible)
@@ -470,6 +409,8 @@ def start_game():
 
         if done4:
             done3 = False
+            button5.clicked = False
+            button6.clicked = False
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text1_2, (110, 200), font, 'white', scroll_offset)
             line_visible = True
@@ -482,6 +423,7 @@ def start_game():
         elif done6:
 
             done4 = False
+            button7.clicked = False
             draw_text_box(screen, (90, 120), (1040, 450), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, text1_3, (380, 300), font2, (255, 255, 255), scroll_offset)
             button7.draw(screen, scroll_offset)
