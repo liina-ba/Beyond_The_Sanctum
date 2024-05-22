@@ -794,8 +794,7 @@ def play_game2(sound_allowed):
             Story.clicked = True
             draw_text_box(screen, (90, 60), (1060, 700), (50, 50, 50), (109, 69, 38), 130, scroll_offset)
             display_text(screen, "The Riddle:", (120, 90), font, (255, 255, 255), scroll_offset)
-            draw_line(screen, 120, HEIGHT - 575, WIDTH - 995, HEIGHT - 575, 1, (255, 255, 255), scroll_offset,
-                      line_visible)
+            draw_line(screen, 120, HEIGHT - 575, WIDTH - 995, HEIGHT - 575, 1, (255, 255, 255), scroll_offset, line_visible)
             display_text(screen, text16_5, (350, 165), font0, (255, 255, 255), scroll_offset)
             display_text(screen, text16_6, (120, 430), font, (255, 255, 255), scroll_offset)
             draw_line(screen, 130, HEIGHT - 150, WIDTH - 130, HEIGHT - 150, 1, (109, 69, 38), scroll_offset,

@@ -258,4 +258,3 @@ def typing_racer_game(sound_allowed):
         screen.blit(cursor_img, cursor_pos)
 
         pygame.display.flip()
-

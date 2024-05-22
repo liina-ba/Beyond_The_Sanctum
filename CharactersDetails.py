@@ -545,7 +545,7 @@ def EndScreen():
 
  Thank you for playing our game. 
  We hope you loved the story and interacted well with it. 
- Tt is an honor that you have chosen to experience this 
+ It is an honor that you have chosen to experience this 
  adventure with us.
 
  Your adventure here may end, but we hope this is just 
