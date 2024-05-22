@@ -284,7 +284,8 @@ def start_game():
         mouse_pos = pygame.mouse.get_pos()
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
-                pygame.quit()
+                import my_game
+                my_game.main_menu()
             elif events.type == pygame.MOUSEBUTTONDOWN:
                 play_click_sound(sound_allowed)
                 if button0.check_click(mouse_pos):
